@@ -8,7 +8,6 @@ const db = sql("meals.db");
 
 export async function getMeals() {
   const getAllMeals = "SELECT * FROM meals";
-  await new Promise((resolve) => setTimeout(resolve, 2000));
   return db.prepare(getAllMeals).all() as IMeal[];
 }
 
