@@ -8,6 +8,20 @@ interface MealsDetailsPageProps {
   params: Promise<{ mealSlug: string }>;
 }
 
+export async function generateMetadata({ params }: MealsDetailsPageProps) {
+  const { mealSlug } = await params;
+  const meal = await getMeal(mealSlug);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 export default async function MealsDetailsPage({
   params,
 }: MealsDetailsPageProps) {
